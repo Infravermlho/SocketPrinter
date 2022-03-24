@@ -1,8 +1,12 @@
+-- Documentação do componente de impressora https://ocdoc.cil.li/block:3d_printer
 local component = require("component")
-local net = require("internet")
-local con = net.open("127.0.0.1", 50343)
 local printer = component.printer3d
 
+-- Documentação do API de internet https://ocdoc.cil.li/api:internet
+local net = require("internet")
+local con = net.open("127.0.0.1", 50343)
+
+-- Marca o tempo de timeout aguardando por um newline
 con:setTimeout(5)
 
 -- FUNÇÃO DE SPLIT PUXADA DO https://stackoverflow.com/questions/40149617/split-string-with-specified-delimiter-in-lua
@@ -17,6 +21,7 @@ function split(s, sep)
     return fields
 end
 
+-- Executa se conectado
 function connected ()
   local line = ''
   printer.reset()
@@ -59,7 +64,7 @@ function connected ()
 end
 
 
-
+-- Parte que verifica se a conexão foi estabelecida
 if (con) then
   local line = ''
 
